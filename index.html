@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LW Tech</title>
+  <style>
+    :root {
+      --dark-bg: #121217;
+      --light-bg: #1e1e26;
+      --accent: #5c4ee5;
+      --accent-light: #8477e5;
+      --text-primary: #e6e6e6;
+      --text-secondary: #a0a0b2;
+      --radius: 10px;
+      --transition: 0.3s;
+      --spacing: 1.5rem;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--text-primary); }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent-light); }
+
+    /* Header */
+    header {
+      background: var(--light-bg);
+      padding: var(--spacing) 2rem;
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+    }
+    .logo { font-size: 1.75rem; font-weight: bold; letter-spacing: 2px; }
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+    nav a {
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      position: relative;
+      padding: 0.25rem 0;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width var(--transition);
+    }
+    nav a:hover::after { width: 100%; }
+    .menu-toggle {
+      display: none;
+      font-size: 1.75rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #1e1e26 0%, #121217 100%);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .hero-content {
+      max-width: 700px;
+      margin: 0 auto;
+      animation: fadeInUp 1s ease;
+    }
+    .hero-content h1 {
+      font-size: 3.75rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-content p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 1.125rem;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sections */
+    .section { padding: 4rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .section h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 0.5rem auto 0;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: var(--light-bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+    .card h3 {
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+    .card p { color: var(--text-secondary); font-size: 1rem; line-height: 1.5; }
+
+    .posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .post-card {
+      background: var(--light-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow var(--transition);
+    }
+    .post-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+    .post-card img { width: 100%; height: 200px; object-fit: cover; }
+    .post-content { padding: 1.5rem; }
+    .post-content h4 { margin-bottom: 0.5rem; font-size: 1.25rem; }
+    .date { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; }
+    .post-content p { color: var(--text-secondary); line-height: 1.5; }
+    .read-more a { display: inline-block; margin-top: 1rem; color: var(--accent); transition: color var(--transition); }
+    .read-more a:hover { color: var(--accent-light); }
+
+    /* Contact */
+    #contact .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .contact-info div {
+      max-width: 200px;
+      animation: fadeInUp 0.8s ease;
+    }
+    .contact-info h3 { color: var(--accent); margin-bottom: 0.5rem; font-size: 1.25rem; }
+    .contact-info p { color: var(--text-secondary); font-size: 1rem; }
+
+    /* Footer */
+    footer {
+      background: var(--light-bg);
+      text-align: center;
+      padding: var(--spacing);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--light-bg);
+        flex-direction: column;
+        gap: 0;
+        display: none;
+      }
+      nav.active { display: flex; }
+      nav a { padding: 1rem 2rem; border-top: 1px solid #2a2a34; }
+      nav a::after { display: none; }
+      .section { padding: 3rem 1rem; }
+      .contact-info { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">LW Tech</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#features">Conteúdo</a>
+      <a href="#blog">Postagens</a>
+      <a href="#contact">Contato</a>
+    </nav>
+    <div class="menu-toggle">☰</div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Tecnológia para Todos</h1>
+      <p>Estamos em uma constante busca pela evolução do nosso conteúdo, esperamos entregar melhor qualidade de conteúdo tecnológico para o mundo.</p>
+      <a href="https://www.youtube.com/@lwtechtecnologia" target="_blank" rel="noopener">
+        <button class="btn-primary">Explorar</button>
+      </a>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="container">
+      <h2>Nosso conteúdo</h2>
+      <div class="features">
+        <div class="card"><h3>Review de sistemas</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p></div>
+        <div class="card"><h3>Testes de aplicativos</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p></div>
+        <div class="card"><h3>Gameplays</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog" class="section">
+    <div class="container">
+      <h2>Últimas postagens</h2>
+      <div class="posts">
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Lorem">
+          <div class="post-content">
+            <h4>Lorem ipsum</h4>
+            <div class="date">26/05/2025</div>
+            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+            <div class="read-more"><a href="#">Leia mais →</a></div>
+          </div>
+        </div>
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Lorem">
+          <div class="post-content">
+            <h4>Lorem ipsum</h4>
+            <div class="date">26/05/2025</div>
+            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+            <div class="read-more"><a href="#">Leia mais →</a></div>
+          </div>
+        </div>
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Lorem">
+          <div class="post-content">
+            <h4>Lorem ipsum</h4>
+            <div class="date">26/05/2025</div>
+            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+            <div class="read-more"><a href="#">Leia mais →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="text-center">Contato</h2>
+      <div class="contact-info">
+        <div><h3>Youtube</h3><p><a href="https://www.youtube.com/@lwtechtecnologia">@lwtechtecnologia</a></p></div>
+        <div><h3>Email</h3><p><a href="#">contact@lwtech.com.br</a></p></div>
+        <div><h3>Discord</h3><p><a href="https://discord.gg/XKeemra2dh">Entrar no servidor</a></p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 LW Tech. Feito com ❤️
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    const links = document.querySelectorAll('nav a');
+    toggle.addEventListener('click', () => nav.classList.toggle('active'));
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('active')) {
+          nav.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
