@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postagem - LW Tech</title>
+  <style>
+    :root {
+      --dark-bg: #121217;
+      --light-bg: #1e1e26;
+      --accent: #5c4ee5;
+      --accent-light: #8477e5;
+      --text-primary: #e6e6e6;
+      --text-secondary: #a0a0b2;
+      --radius: 10px;
+      --transition: 0.3s;
+      --spacing: 1.5rem;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--text-primary); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent-light); }
+    header {
+      background: var(--light-bg);
+      padding: var(--spacing) 2rem;
+      position: sticky; top: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 10;
+    }
+    .logo { font-size: 1.75rem; font-weight: bold; letter-spacing: 2px; }
+    nav { display: flex; gap: 2rem; }
+    nav a { text-transform: uppercase; font-size: 0.9rem; position: relative; padding: 0.25rem 0; }
+    nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width var(--transition); }
+    nav a:hover::after { width: 100%; }
+    .menu-toggle { display: none; font-size: 1.75rem; cursor: pointer; user-select: none; }
+    .post-header {
+      background: linear-gradient(135deg, #1e1e26 0%, #121217 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .post-header h1 { font-size: 3rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, var(--accent), var(--accent-light)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .post-header .meta { color: var(--text-secondary); font-size: 0.9rem; }
+    .container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .post-image { width: 100%; border-radius: var(--radius); overflow: hidden; margin: 2rem 0; }
+    .post-image img { width: 100%; display: block; }
+    .post-content p { margin-bottom: 1rem; }
+    .back-link { display: inline-block; margin-top: 2rem; background: var(--accent); color: #fff; padding: 0.5rem 1.5rem; border-radius: var(--radius); transition: transform var(--transition), box-shadow var(--transition); }
+    .back-link:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    footer { background: var(--light-bg); text-align: center; padding: var(--spacing); color: var(--text-secondary); font-size: 0.85rem; margin-top: 4rem; }
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      nav { position: absolute; top: 100%; left: 0; right: 0; background: var(--light-bg); flex-direction: column; gap: 0; display: none; }
+      nav.active { display: flex; }
+      nav a { padding: 1rem 2rem; border-top: 1px solid #2a2a34; }
+      nav a::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">LW Tech</div>
+    <nav>
+      <a href="index.html#home">Home</a>
+      <a href="index.html#features">Conteúdo</a>
+      <a href="index.html#blog">Postagens</a>
+      <a href="index.html#contact">Contato</a>
+    </nav>
+    <div class="menu-toggle">☰</div>
+  </header>
+
+  <section class="post-header">
+    <h1>Título da Postagem</h1>
+    <div class="meta">Publicado em 26/05/2025 por Autor</div>
+  </section>
+
+  <div class="container">
+    <div class="post-image">
+      <img src="https://placehold.co/800x400" alt="Imagem da postagem">
+    </div>
+    <article class="post-content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.</p>
+      <p>Nulla facilisi. Phasellus convallis tellus vitae erat interdum, ac pretium purus lacinia. Integer euismod, justo at tincidunt dictum, enim lectus molestie purus, non egestas libero justo at purus.</p>
+      <p>Sed pulvinar, sapien eget sollicitudin facilisis, odio metus tincidunt turpis, et cursus elit orci at sapien.</p>
+    </article>
+
+    <a href="/index.html#blog" class="back-link">← Voltar às postagens</a>
+  </div>
+
+  <footer>
+    &copy; 2025 LW Tech. Feito com ❤️
+  </footer>
+
+  <script defer>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    const links = document.querySelectorAll('nav a');
+    toggle.addEventListener('click', () => nav.classList.toggle('active'));
+    links.forEach(link => link.addEventListener('click', () => nav.classList.remove('active')));
+  </script>
+</body>
+</html>
