@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LW Tech</title>
   <style>
     :root {
@@ -71,8 +71,6 @@
     .read-more a:hover { color: var(--accent-light); }
 
     .show-more-container { display: flex; justify-content: center; width: 100%; margin-top: 2rem; }
-    .btn-arrow { background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--accent); transition: transform var(--transition); }
-    .btn-arrow:hover { transform: translateY(-3px); }
 
     #contact .contact-info { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; text-align: center; }
     .contact-info div { max-width: 200px; animation: fadeInUp 0.8s ease; }
@@ -98,7 +96,7 @@
     <nav>
       <a href="#home">Home</a>
       <a href="#features">Conteúdo</a>
-      <a href="#blog">Postagens</a>
+      <a href="posting.html">Postagens</a>
       <a href="#contact">Contato</a>
     </nav>
     <div class="menu-toggle">☰</div>
@@ -130,7 +128,7 @@
       <h2>Últimas postagens</h2>
       <div class="posts" id="posts">
         <div class="post-card">
-          <img src="https://placehold.co/300x200" alt="Postagem 1">
+          <img src="https://placehold.co/300x200" alt="Postagem 1" />
           <div class="post-content">
             <h4>Postagem 1</h4>
             <p class="date">Publicado em 01/01/2025</p>
@@ -139,7 +137,7 @@
           </div>
         </div>
         <div class="post-card">
-          <img src="https://placehold.co/300x200" alt="Postagem 2">
+          <img src="https://placehold.co/300x200" alt="Postagem 2" />
           <div class="post-content">
             <h4>Postagem 2</h4>
             <p class="date">Publicado em 02/01/2025</p>
@@ -148,7 +146,7 @@
           </div>
         </div>
         <div class="post-card">
-          <img src="https://placehold.co/300x200" alt="Postagem 3">
+          <img src="https://placehold.co/300x200" alt="Postagem 3" />
           <div class="post-content">
             <h4>Postagem 3</h4>
             <p class="date">Publicado em 03/01/2025</p>
@@ -156,18 +154,9 @@
             <div class="read-more"><a href="#">Leia mais</a></div>
           </div>
         </div>
-        <div class="post-card">
-          <img src="https://placehold.co/300x200" alt="Postagem 4">
-          <div class="post-content">
-            <h4>Postagem 4</h4>
-            <p class="date">Publicado em 04/01/2025</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
-            <div class="read-more"><a href="#">Leia mais</a></div>
-          </div>
-        </div>
       </div>
       <div class="show-more-container">
-        <button class="btn-arrow" id="showMoreBtn">↓</button>
+        <a href="posting.html"><button class="btn-primary">Mostrar Mais</button></a>
       </div>
     </div>
   </section>
@@ -200,25 +189,6 @@
       });
     });
 
-    const posts = document.querySelectorAll('.post-card');
-    const showMoreBtn = document.getElementById('showMoreBtn');
-    let visibleCount = 3;
-
-    function updatePostsVisibility() {
-      posts.forEach((post, index) => {
-        post.style.display = index < visibleCount ? 'block' : 'none';
-      });
-      if (visibleCount >= posts.length) {
-        showMoreBtn.style.display = 'none';
-      }
-    }
-
-    showMoreBtn.addEventListener('click', () => {
-      visibleCount += 3;
-      updatePostsVisibility();
-    });
-
-    updatePostsVisibility();
   </script>
 </body>
 </html>

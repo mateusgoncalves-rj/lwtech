@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Posting - LW Tech</title>
+  <style>
+    :root {
+      --dark-bg: #121217;
+      --light-bg: #1e1e26;
+      --accent: #5c4ee5;
+      --accent-light: #8477e5;
+      --text-primary: #e6e6e6;
+      --text-secondary: #a0a0b2;
+      --radius: 10px;
+      --transition: 0.3s;
+      --spacing: 1.5rem;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--text-primary); }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent-light); }
+
+    header {
+      background: var(--light-bg);
+      padding: var(--spacing) 2rem;
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+    }
+    .logo { font-size: 1.75rem; font-weight: bold; letter-spacing: 2px; }
+    nav { display: flex; gap: 2rem; }
+    nav a { text-transform: uppercase; font-size: 0.9rem; position: relative; padding: 0.25rem 0; }
+    nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width var(--transition); }
+    nav a:hover::after { width: 100%; }
+    .menu-toggle { display: none; font-size: 1.75rem; cursor: pointer; user-select: none; }
+
+    .section { padding: 4rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 2rem; position: relative; }
+    .section h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent); margin: 0.5rem auto 0; }
+
+    /* Search input styling */
+    .search-container { text-align: center; margin-bottom: 2rem; }
+    .search-input { padding: 0.75rem 1rem; width: 100%; max-width: 500px; border-radius: var(--radius); border: none; font-size: 1rem; }
+
+    .posts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .post-card { background: var(--light-bg); border-radius: var(--radius); overflow: hidden; transition: box-shadow var(--transition); }
+    .post-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+    .post-card img { width: 100%; height: 200px; object-fit: cover; }
+    .post-content { padding: 1.5rem; }
+    .post-content h4 { margin-bottom: 0.5rem; font-size: 1.5rem; }
+    .date { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; }
+    .post-content p { color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem; }
+    .read-more a { display: inline-block; margin-top: 1rem; color: var(--accent); transition: color var(--transition); }
+    .read-more a:hover { color: var(--accent-light); }
+
+    footer { background: var(--light-bg); text-align: center; padding: var(--spacing); color: var(--text-secondary); font-size: 0.85rem; }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      nav { position: absolute; top: 100%; left: 0; right: 0; background: var(--light-bg); flex-direction: column; gap: 0; display: none; }
+      nav.active { display: flex; }
+      nav a { padding: 1rem 2rem; border-top: 1px solid #2a2a34; }
+      nav a::after { display: none; }
+      .section { padding: 3rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">LW Tech</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#features">Conteúdo</a>
+      <a href="posting.html">Postagens</a>
+      <a href="#contact">Contato</a>
+    </nav>
+    <div class="menu-toggle">☰</div>
+  </header>
+
+  <section id="blog" class="section">
+    <div class="container">
+      <h2>LW Posting</h2>
+      <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar no blog..." />
+      </div>
+      <div class="posts" id="posts">
+        <!-- Exemplo de post 1 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 1" />
+          <div class="post-content">
+            <h4>Postagem 1</h4>
+            <p class="date">Publicado em 01/01/2025</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+            <div class="read-more"><a href="posts/post1.html">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Exemplo de post 2 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 2" />
+          <div class="post-content">
+            <h4>Postagem 2</h4>
+            <p class="date">Publicado em 02/02/2025</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet eros eu orci efficitur interdum.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Exemplo de post 3 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 3" />
+          <div class="post-content">
+            <h4>Postagem 3</h4>
+            <p class="date">Publicado em 03/03/2025</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 4 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 4" />
+          <div class="post-content">
+            <h4>Postagem 4</h4>
+            <p class="date">Publicado em 04/04/2025</p>
+            <p>Aliquam erat volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 5 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 5" />
+          <div class="post-content">
+            <h4>Postagem 5</h4>
+            <p class="date">Publicado em 05/05/2025</p>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 6 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 6" />
+          <div class="post-content">
+            <h4>Postagem 6</h4>
+            <p class="date">Publicado em 06/06/2025</p>
+            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a pharetra augue.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 7 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 7" />
+          <div class="post-content">
+            <h4>Postagem 7</h4>
+            <p class="date">Publicado em 07/07/2025</p>
+            <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 8 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 8" />
+          <div class="post-content">
+            <h4>Postagem 8</h4>
+            <p class="date">Publicado em 08/08/2025</p>
+            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 9 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 9" />
+          <div class="post-content">
+            <h4>Postagem 9</h4>
+            <p class="date">Publicado em 09/09/2025</p>
+            <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 10 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 10" />
+          <div class="post-content">
+            <h4>Postagem 10</h4>
+            <p class="date">Publicado em 10/10/2025</p>
+            <p>Vestibulum id ligula porta felis euismod semper.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 11 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 11" />
+          <div class="post-content">
+            <h4>Postagem 11</h4>
+            <p class="date">Publicado em 11/11/2025</p>
+            <p>Etiam porta sem malesuada magna mollis euismod.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 12 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 12" />
+          <div class="post-content">
+            <h4>Postagem 12</h4>
+            <p class="date">Publicado em 12/12/2025</p>
+            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 13 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 13" />
+          <div class="post-content">
+            <h4>Postagem 13</h4>
+            <p class="date">Publicado em 13/01/2026</p>
+            <p>Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 14 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 14" />
+          <div class="post-content">
+            <h4>Postagem 14</h4>
+            <p class="date">Publicado em 14/02/2026</p>
+            <p>Curabitur blandit tempus porttitor.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 15 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 15" />
+          <div class="post-content">
+            <h4>Postagem 15</h4>
+            <p class="date">Publicado em 15/03/2026</p>
+            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 16 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 16" />
+          <div class="post-content">
+            <h4>Postagem 16</h4>
+            <p class="date">Publicado em 16/04/2026</p>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 17 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 17" />
+          <div class="post-content">
+            <h4>Postagem 17</h4>
+            <p class="date">Publicado em 17/05/2026</p>
+            <p>Nulla vitae elit libero, a pharetra augue.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 18 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 18" />
+          <div class="post-content">
+            <h4>Postagem 18</h4>
+            <p class="date">Publicado em 18/06/2026</p>
+            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 19 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 19" />
+          <div class="post-content">
+            <h4>Postagem 19</h4>
+            <p class="date">Publicado em 19/07/2026</p>
+            <p>Maecenas faucibus mollis interdum.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 20 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 20" />
+          <div class="post-content">
+            <h4>Postagem 20</h4>
+            <p class="date">Publicado em 20/08/2026</p>
+            <p>Etiam porta sem malesuada magna mollis euismod.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 21 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 21" />
+          <div class="post-content">
+            <h4>Postagem 21</h4>
+            <p class="date">Publicado em 21/09/2026</p>
+            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 22 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 22" />
+          <div class="post-content">
+            <h4>Postagem 22</h4>
+            <p class="date">Publicado em 22/10/2026</p>
+            <p>Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 23 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 23" />
+          <div class="post-content">
+            <h4>Postagem 23</h4>
+            <p class="date">Publicado em 23/11/2026</p>
+            <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 24 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 24" />
+          <div class="post-content">
+            <h4>Postagem 24</h4>
+            <p class="date">Publicado em 24/12/2026</p>
+            <p>Vestibulum id ligula porta felis euismod semper.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 25 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 25" />
+          <div class="post-content">
+            <h4>Postagem 25</h4>
+            <p class="date">Publicado em 25/01/2027</p>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 26 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 26" />
+          <div class="post-content">
+            <h4>Postagem 26</h4>
+            <p class="date">Publicado em 26/02/2027</p>
+            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 27 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 27" />
+          <div class="post-content">
+            <h4>Postagem 27</h4>
+            <p class="date">Publicado em 27/03/2027</p>
+            <p>Etiam porta sem malesuada magna mollis euismod.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 28 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 28" />
+          <div class="post-content">
+            <h4>Postagem 28</h4>
+            <p class="date">Publicado em 28/04/2027</p>
+            <p>Maecenas faucibus mollis interdum.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 29 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 29" />
+          <div class="post-content">
+            <h4>Postagem 29</h4>
+            <p class="date">Publicado em 29/05/2027</p>
+            <p>Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+        <!-- Novo post 30 -->
+        <div class="post-card">
+          <img src="https://placehold.co/600x400" alt="Postagem 30" />
+          <div class="post-content">
+            <h4>Postagem 30</h4>
+            <p class="date">Publicado em 30/06/2027</p>
+            <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+            <div class="read-more"><a href="#">Leia mais</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+    &copy; 2025 LW Tech. Feito com ❤️
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    const links = document.querySelectorAll('nav a');
+    toggle.addEventListener('click', () => nav.classList.toggle('active'));
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('active')) {
+          nav.classList.remove('active');
+        }
+      });
+    });
+
+    // Função debounce para evitar filtragens a cada tecla digitada
+    function debounce(func, delay) {
+      let timer;
+      return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), delay);
+      };
+    }
+
+    const searchInput = document.getElementById('searchInput');
+    const posts = document.querySelectorAll('.post-card');
+
+    function filterPosts() {
+      const term = searchInput.value.toLowerCase();
+      posts.forEach(post => {
+        const title = post.querySelector('h4').innerText.toLowerCase();
+        const content = post.querySelector('.post-content p').innerText.toLowerCase();
+        if (title.includes(term) || content.includes(term)) {
+          post.style.display = 'block';
+        } else {
+          post.style.display = 'none';
+        }
+      });
+    }
+
+    const optimizedFilter = debounce(filterPosts, 300);
+    searchInput.addEventListener('input', optimizedFilter);
+  </script>
+</body>
+</html>
